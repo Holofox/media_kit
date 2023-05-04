@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   system("make -C ../common/darwin HEADERS_DESTDIR=\"$(pwd)/Headers\"")
 
   # Find the nearest path to `pubspec.lock`
-  current_dir       = ENV['PWD']
+  current_dir       = ENV['PWD_FALLBACK'] || ENV['PWD']
   pubspec_lock_path = ''
   while pubspec_lock_path == '' && current_dir != '/'
     path = File.join(current_dir, 'pubspec.lock')
